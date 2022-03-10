@@ -14,12 +14,12 @@ var kataKedua = "2";
 var kataKetiga = "4";
 var kataKeempat = "6";
 
-var intpertama = parseInt(kataPertama);
-var intkedua = parseInt(kataKedua);
-var intKetiga = parseInt(kataKetiga);
-var intKeempat = parseInt(kataKeempat);
+var a= parseInt(kataPertama);
+var b = parseInt(kataKedua);
+var c = parseInt(kataKetiga);
+var d = parseInt(kataKeempat);
 
-console.log(kataPertama * kataKedua + kataKeempat - kataKetiga  );
+console.log((a  + b) * (d - c)  );
 
 // SOAL 3
 var kalimat = 'wah javascript itu keren sekali'; 
