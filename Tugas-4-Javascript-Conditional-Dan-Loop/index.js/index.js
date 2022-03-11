@@ -70,14 +70,7 @@ console.log(batas)
 
 
 //soal 4
-var m = 3;
-var n = 3;
-var x = 1;
-
-while(m <= n ){
-    console.log(x + "- i love programming");
-    x++;
-}
+ 
 
 
 
