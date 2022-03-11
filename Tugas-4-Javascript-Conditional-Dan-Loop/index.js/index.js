@@ -58,7 +58,7 @@ console.log(batas)
 
 var s ="";
 for( var n = 0; n<7; n++){
-    for (var n = 0; n <= n; n++){
+    for (var j = 0; j <= n; j++){
         s += "#";
     }
     s +="\n"
@@ -67,3 +67,17 @@ console.log(s)
 
 var batas = "=========================";
 console.log(batas)
+
+
+//soal 4
+var m = 3;
+var n = 3;
+var x = 1;
+
+while(m <= n ){
+    console.log(x + "- i love programming");
+    x++;
+}
+
+
+
