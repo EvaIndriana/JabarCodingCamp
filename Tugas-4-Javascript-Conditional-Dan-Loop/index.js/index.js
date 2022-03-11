@@ -1,4 +1,3 @@
-
 //nilai >= 85 indeksnya A
 //nilai >= 75 dan nilai < 85 indeksnya B
 //nilai >= 65 dan nilai < 75 indeksnya c
@@ -68,4 +67,3 @@ console.log(s)
 
 var batas = "=========================";
 console.log(batas)
-
