@@ -69,7 +69,6 @@ var batas = "=========================";
 console.log(batas)
 
 
-//soal 4
  
 
 
