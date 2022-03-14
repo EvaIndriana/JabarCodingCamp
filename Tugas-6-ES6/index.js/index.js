@@ -19,19 +19,22 @@ console.log("==============================");
   //address: "Jalan Ranamanyar",
   //hobby: "playing football",
 //}
-
-
 // object
 var studentName = {
-  firstName: 'Muhaamd Iqbal',
+  firstName: 'Muhaamd',
   lastName: 'Iqbal Mubaroq',
   address: 'Jalan Ranamanyar',
   hobby: 'playing football'
 };
 
 const {firstName, lastName, address,hobby} = studentName
-
 console.log(firstName, lastName, address,hobby);
 
+console.log("==============================");
 
-  
+//soal 4
+const west = ["Will", "Chris", "Sam", "Holly"]
+const east = ["Gill", "Brian", "Noel", "Maggie"]
+
+const combined = [...west, ...east]
+console.log(combined);
