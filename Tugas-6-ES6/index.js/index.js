@@ -6,16 +6,16 @@ const luas = (alas, tinggi) => {
 const alas = 10;
 const tinggi = 10;
 console.log(luas(alas, tinggi));
-console.log("\n")
 console.log("==============================");
 
 
 //soal 2
+console.log("==============================");
 
 
 //soal 3
 var studentName = {
-  firstName: 'Muhaamd',
+  firstName: 'Muhammad',
   lastName: 'Iqbal Mubaroq',
   address: 'Jalan Ranamanyar',
   hobby: 'playing football'
