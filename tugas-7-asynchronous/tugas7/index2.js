@@ -6,7 +6,15 @@ var books = [
     {name: 'Kalkulus', timeSpent: 4000},
     {name: 'komik', timeSpent: 1000}
 ]
+const baca = (time, books, i) => {
+  if (i < books.length) {
+    readBooksPromise(time, books[i], (sisa) => {
+      if (sisa > 0) {
+        i ++= 1;
+        baca(sisa, books, i);
+      }
+    });
+  }
+};
 
-  books.forEach(element => readBooksPromise(10000, element, (callbackFn) => {
-    console.log(callbackFn)
-}))
+baca(10000, books, 0);
