@@ -10,7 +10,7 @@ const baca = (time, books, i) => {
   if (i < books.length) {
     readBooksPromise(time, books[i], (sisa) => {
       if (sisa > 0) {
-        i ++= 1;
+        i += 1;
         baca(sisa, books, i);
       }
     });
