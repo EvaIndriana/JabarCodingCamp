@@ -16,22 +16,24 @@
    var vm = new Vue({
       el: '#app',
       data: {
-        firstName : 'Tuanku Imam',
-        lastName : 'Bonjol'
+        firstName : 'Tuanku',
+        lastName : 'Imam Bonjol',
+        
          
       },
       computed : {
         fullName : {
           get(){
-            return this.firstName + ' ' + this.lastName 
+            return `${this.firstName} ${this.lastName}` 
               
           },
-          set(newValue){
-            var arr = newValue.split(" ");
-            this.firstName = arr[0];
-            this.lastName = arr[1];
-          },
-        },
+          set(param){
+            let arr = param.split(" ")
+            this.firstName = arr [0]
+            arr.shift()
+            this.lastName = arr.join(' ') 
+          }
+        }
       },
       methods : {}
   })
