@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Document</title>
+</head>
+<body>
+    <div id = "app">
+        <form @submit.prevent="submitForm()">
+            
+            </p>
+            <label>Nama : </label><br>
+            <input type="text" name="nama" ref="nama" v-model="nama"><br><br>
+            <label>Address : </label><br>
+            <textarea name="address" ref="address" v-model="address"></textarea><br><br>
+            <label>No HP : </label><br>
+            <input type="text" name="no_hp" ref="no_hp" v-model="no_hp"><br><br>
+            <input type="submit" value="SUBMIT">
+        </form><br>
+        
+        <table border="1">
+            <tr v-for="blogs of blogs">
+                <td>
+                    <img src="https://dummyimage.com/16:9x1080" alt="" width="100">
+                </td>
+                <td>
+                    <b>Nama : </b> {{member.nama}} <br>
+                    <b>Address : </b> {{member.address}} <br>
+                    <b>No HP : </b>  {{member.no_hp}}<br>
+
+                </td>
+                <td>
+                <button>Edit</button>
+                <button>Hapus</button>
+                <button>Upload Foto</button>
+                </td>
+            </tr>
+
+        </table>
+        </div>
+
+        <SCript src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></SCript>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    nama : ' ',
+                    address : ' ',
+                    no_hp : ' ',
+                    errors : [],
+                    blogs : [],
+                    data : []
+                    
+                    
+                },
+                methods : {
+                    clearForm : function(){
+                        this.nama=''
+                        this.address=''
+                        this.no_hp=''
+                    },
+
+                    submitForm : function(){
+                        let formData = new FormData()
+                        formData.append('nama', this.nama)
+                        formData.append('address', this.address)
+                        formData.append('no_hp', this.no_hp)
+
+                    const config = {
+                        method : "post",
+                        url : "http://demo-api-vue.sanbercloud.com/api/member"
+                        data : formData
+                }
+                    axios(config)
+                    .then( (Response)=>{
+                        this.clearForm()
+                        this.getBlogs()
+                        alert(response.data.message)
+                        
+
+                    })
+                    .catch( (error)=>{
+                        console.log(error)
+                    })
+
+                }
+            },
+            getBlogs : function(){
+                const config = {
+                    method = "get",
+                    url : "http://demo-api-vue.sanbercloud.com/api/member"
+                }
+                
+                axios (config)
+                .then((response)=>{
+                    this.blogs = response.data.blogs
+                })
+                .catch((error)=>{
+                    console.log(error)
+                })
+
+            }
+        })
+        
+        </script>
+        </body>
+        </html>
+
+
+                    
