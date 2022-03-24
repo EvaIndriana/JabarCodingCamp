@@ -1,126 +1,113 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Tugas Component</title>
-
+</head>
+<body>
+    <div id="app">
+        <div class="formInput">
+            <input type="text" v-model="formUser">
+            <button v-if="!editButton" @click="addUser">
+                Add
+            </button>
+            <button v-if="editButton" @click="updateUser">
+                Update
+            </button>
+        </div>
+    <users-component 
+        v-for="(user , index) in reverseUsers" 
+        :key="index"
+        v-bind:user="user"
+        @edit-user="formUser = $event"
+    >
+    </users-component>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
-</head>
-
-<body>
-
-    <div id="app">
-        <usercomponent></usercomponent>
-
-
-        <div class="formInput" >
-            <input type="text" v-model="formUser">
-            <button v-if="!editButton" @click="addUser">Add</button>
-            <button v-if="editButton" @click="updateUser">Update</button>
-        </div>
-
-        <div id="usercomponent" >
-            <ul>
-                <li v-for="(user , index) in reverseUsers" :key="index">
-                    {{ user.name }} ||
-                    <button @click="editUser(index)">Edit</button>
-                    <button @click="deleteUser(index)">Delete</button>
-                </li>
-            </ul>
-        </div>
-    </div>
-
     <script>
- 
+        var UsersComponent = {
+            template: `
+            <div  class="usersList">
+                <ul>
+                    <li>
+                        {{ user.name }} ||
+                        <button @click="$emit('edit-user', user.name)">Edit</button>
+                        <button @click="deleteUser(index)">Delete</button>
+                    </li>
 
-
-    Vue.component('usercomponent',{
-        template : '#usercomponent',
-        data(){
-            return {
-                data : {
-                    editUser : '',
-                    deleteUser : ''
-            }
+                </ul>
+            </div>
+            `,
+            data(){
+                return{
+                    reverseUsers: {
+                        get: function () {
+                            return this.users.slice().reverse()
+                        },
+                        set: function (value) {
+                            this.users = value.slice().reverse()
+                        }
+                    },
+                }
+            },
+            props : ['user']
         }
-    },
-    mounted() {
-        this.data ={
-            editUser: '',
-            deleteUser: ''
-        }
-    }
-})
-        let vm = new Vue({
-            el: '#app',
-            data: {
-                
-                users: [
+    const vm = new Vue({
+        el: '#app',
+        components :{
+            'users-component' : UsersComponent
+        },
+        data :{
+            users : [
                     { name: 'Muhammad Iqbal Mubarok' },
                     { name: 'Ruby Purwanti' },
                     { name: 'Faqih Muhammad' },
-
-                ],
-                formUser: '',
-                editButton: false,
-                idSelected: null
-
-            },
-
-            computed: {
-                reverseUsers: {
-                    get: function () {
-                        return this.users.slice().reverse()
-                    },
-                    set: function (value) {
-                        this.users = value.slice().reverse()
-                    }
-                }
-            },
-
-            methods: {
-                addUser: function () {
-                    this.users.push({ name: this.formUser })
-                    this.formUser = ''
+                    ],
+            selectedBlog    : '',
+            formUser        : '',
+            editButton      : false,
+            idSelected      : null
+        },
+        computed: {
+            reverseUsers: {
+                get: function () {
+                    return this.users.slice().reverse()
                 },
-
-                editUser: function (id) {
-                    this.formUser = this.reverseUsers[id].name
-                    this.editButton = true,
-                        this.idSelected = id
-                },
-                updateUser: function () {
-                    this.reverseUsers[this.idSelected].name = this.formUser
-                    this.formUser = ''
-                    this.editButton = false
-                },
-                deleteUser: function (id) {
-                    let confirmation = confirm("Anda yakin ?")
-                    if (confirmation) {
-                        this.reverseUsers = this.reverseUsers.filter(function (item, index) {
-                            return index != id
-
-                        })
-
-                    }
-
+                set: function (value) {
+                    this.users = value.slice().reverse()
                 }
 
             }
+        },
+        methods: {
+            addUser: function () {
+                this.users.push({ name: this.formUser })
+                this.formUser = ''
+            },
+            editUser: function (id) {
+                this.formUser = this.reverseUsers[id].name
+                this.editButton = true,
+                this.idSelected = id
+            },
+            updateUser: function () {
+                this.reverseUsers[this.idSelected].name = this.formUser
+                this.formUser = ''
+                this.editButton = false
+            },
+            deleteUser: function (id) {
+                let confirmation = confirm("Anda yakin ?")
+                if (confirmation) {
+                    this.reverseUsers = this.reverseUsers.filter(function (item, index) {
+                    return index != id
+                    })
+                }
 
-        })
-
+            }
+        }
+    })
     </script>
-
 </body>
-
 </html>
