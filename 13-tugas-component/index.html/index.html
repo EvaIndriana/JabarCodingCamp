@@ -19,13 +19,16 @@
 <body>
 
     <div id="app">
+        <usercomponent></usercomponent>
+
+
         <div class="formInput" >
             <input type="text" v-model="formUser">
             <button v-if="!editButton" @click="addUser">Add</button>
             <button v-if="editButton" @click="updateUser">Update</button>
         </div>
 
-        <div class="usersList" id="usercomponent" >
+        <div id="usercomponent" >
             <ul>
                 <li v-for="(user , index) in reverseUsers" :key="index">
                     {{ user.name }} ||
@@ -37,6 +40,8 @@
     </div>
 
     <script>
+ 
+
 
     Vue.component('usercomponent',{
         template : '#usercomponent',
@@ -58,6 +63,7 @@
         let vm = new Vue({
             el: '#app',
             data: {
+                
                 users: [
                     { name: 'Muhammad Iqbal Mubarok' },
                     { name: 'Ruby Purwanti' },
